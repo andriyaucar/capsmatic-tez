@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Our Fabric Tutorial</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <script src="fabric.js" type="text/javascript"></script>
+    <script src="jquery-2.1.1.js" type="text/javascript"></script>
+    <script src="jquery-ui/jquery-ui.js" type="text/javascript"></script>
+    <script src="ractive.js" type="text/javascript"></script>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+
+<style type="text/css">
+canvas {
+  border: 1px solid gray;
+}
+#textSize {
+  width: 300px;
+  margin-left: 20px;
+}
+#textSize div {
+  margin-top: 15px;
+}
+#backgroundOpacity {
+  width: 300px;
+  margin-left: 20px;
+}
+#backgroundOpacity div {
+  margin-top: 15px;
+}
+#download {
+	    float:left;
+	    cursor:pointer;
+	    color:#645256;
+	    padding:3px;
+	}
+
+.caps {
+
+    /* margin-right: 0px; */
+    /* width: 600px; */
+    margin: 0px;
+    height: 800px;
+    position: absolute;
+    top: 85px;
+    left: 10px;
+}
+.tools {
+  position: absolute;
+  top: 158px;
+  left: 600px;
+  text-align: left;
+
+}
+#top {
+	width: 100%;
+	height: 53px;
+	color: #fff;
+	background: #815C64;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+}
+#top h1 {
+  vertical-align: middle;
+  font-family: Purisa;
+  line-height: 25px;
+
+}
+body {
+    background-color: #E1E1E1;
+}
+</style>
+</head>
+<body>
+  <div id="top">
+
+    <h1><span style="color:#C65970">C</span>A<span style="color:#B1B1B1">P</span><span style="color:#ECCEF5">S</span><span style="color:#585858">M</span>A<span style="color:#F6CECE">T</span><span style="color:#BDBDBD">I</span>C</h1>
+
+  </div>
+    <div id="container"></div>
+    <div id="demo-combine" style="width:500px;"></div>
+    <script id="main" type="text/ractive">
+    {{#each capsData: i}}
+      <caps caps={{this}} i={{i}}></caps>
+    {{/each}}
+    </script>
+
+
+    <script id="template" type="text/ractive" src="jscolor.js">
+     <div align="center">
+     <div class="caps">
+     <a href="#" class="button" id="btn-download" download="My-Caps.png" text-align = "left">CAPS DOWNLOAD</a>
+         <canvas id="c{{i}}" width="800px" height="800px"></canvas>
+         </div> <!-- div.caps -->
+         <div class="tools">
+         {{#with caps}}
+         <table>
+            <tr>
+               <td>Arka Plan Rengi</td>
+               <td><input value='{{textBackgroundColor}}' class="color"></td>
+            </tr>
+            <tr>
+               <td>Yazı Rengi</td>
+               <td><input value={{textColor}} class="color"></td>
+            </tr>
+            </table>
+             Yazı Boyutu: <div id="textSize"><div><span></span></div></div>
+             Opacity: <div id="backgroundOpacity"><div><span></span></div></div>
+                 <br>
+             <h>Yazı Tipi</h>
+             <select value={{fontFamily}}>
+                {{#each fontfamily}}
+              <option>{{this}}</option>
+              {{/each}}
+             </select><br>
+             <h>smiley</h>
+             <select value={{smiley}}>
+                {{#each smiley}}
+              <option>{{this}}</option>
+              {{/each}}
+             </select><br>
+
+             <textarea rows=5 cols=60 value={{text}}>Ben naptım yahu?</textarea><br>
+             Seperate? : <input type="checkbox" checked={{seperate}}>
+             Top? : <input type="checkbox" checked={{.top_checked}}>
+	           Unlock Text Movement? : <input type="checkbox" checked={{unlock}}>
+
+         {{/with}}
+         </div>
+     <div>
+    </script>
+
+  <script src="caps-ractive.js" type="text/javascript"></script>
+</body>
+</html>
